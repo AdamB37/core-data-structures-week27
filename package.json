@@ -1,0 +1,24 @@
+{
+  "name": "core-data-structures-week27",
+  "version": "1.0.0",
+  "description": "Write tests and implementations for common data structures.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asantos3026/core-data-structures-week27.git"
+  },
+  "keywords": [
+    "implementing",
+    "data",
+    "structures"
+  ],
+  "author": "Aileen and TJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asantos3026/core-data-structures-week27/issues"
+  },
+  "homepage": "https://github.com/asantos3026/core-data-structures-week27#readme"
+}
