@@ -1,6 +1,4 @@
-'use strict'
-
-export default class Stack {
+const Stack = class {
   constructor() {
     this.data = []
   }
@@ -30,3 +28,5 @@ export default class Stack {
     return this.data.length
   }
 }
+
+export default Stack
