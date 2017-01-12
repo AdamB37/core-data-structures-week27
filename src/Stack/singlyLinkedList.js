@@ -55,15 +55,36 @@ const singlyLinkedList = class {
     let beforeNodeToDelete = null
     let nodeToDelete = null
     let deletedNode = null
+
+    if(position < 0 || position > length) {
+      throw new Error("This node position does not exist in this list")
+    }
+
+    if(position === 1) {
+      this.head = currentNode.next
+      deletedNode = currentNode
+      currentNode = null
+      this._length--
+
+      return deletedNode
+    }
+
+    while(count < position) {
+      beforeNodeToDelete = currentNode
+      nodeToDelete = currentNode.next
+      count++
+    }
+
+    beforeNodeToDelete.next = nodeToDelete.next;
+    deletedNode = nodeToDelete;
+    nodeToDelete = null;
+    this._length--;
+    return deletedNode;
   }
-
 }
-
 
 // const sll = new singlyLinkedList()
 // sll.add(10)
 // sll.add(11)
-// sll.add(12)
-// console.log(sll.searchNodeAt(2))
 
 export default singlyLinkedList

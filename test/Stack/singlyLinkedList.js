@@ -22,15 +22,20 @@ describe('singlyLinkedList', () => {
     it('searches for a node at a specific position in the list', () => {
       const sll = new singlyLinkedList()
       sll.add(10)
-      sll.searchNodeAt(1)
 
       expect(sll.searchNodeAt(1)).to.eql({data: 10, next: null })
     })
   })
 
-  // context('removePosition()', () => {
-  //   it('')
-  // })  
+  context('removePosition()', () => {
+    it('deletes the node at the specific position in the list', () => {
+      const sll = new singlyLinkedList()
+      sll.add(10)
+
+      expect(sll.removePosition(1)).to.eql({data: 10, next: null})
+    })
+  })  
+
 })
 
  
