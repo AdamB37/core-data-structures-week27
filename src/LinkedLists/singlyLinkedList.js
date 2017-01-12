@@ -15,7 +15,7 @@ const singlyLinkedList = class {
     if(!value){
       throw new Error("Please pass in a value!")
     }
-    const node = new Node(value)
+    let node = new Node(value)
     if(!this.head) {
       this.head = node
       this._length += 1
@@ -47,44 +47,63 @@ const singlyLinkedList = class {
     return currentNode
   }
 
-
-  removePosition(position) {
-    let currentNode = this.head
-    let length = this._length
-    let count = 0
-    let beforeNodeToDelete = null
-    let nodeToDelete = null
-    let deletedNode = null
-
-    if(position < 0 || position > length) {
-      throw new Error("This node position does not exist in this list")
-    }
-
-    if(position === 1) {
-      this.head = currentNode.next
-      deletedNode = currentNode
-      currentNode = null
-      this._length--
-
-      return deletedNode
-    }
-
-    while(count < position) {
-      beforeNodeToDelete = currentNode
-      nodeToDelete = currentNode.next
-      count++
-    }
-
-    beforeNodeToDelete.next = nodeToDelete.next;
-    deletedNode = nodeToDelete;
-    nodeToDelete = null;
-    this._length--;
-    return deletedNode;
+  getHeadNode() {
+    return this.head
   }
+
+  getTailNode() {
+    let currentNode = this.head
+    console.log(currentNode)
+
+    while(currentNode.next) {
+      currentNode = currentNode.next
+    }
+
+    return currentNode
+  }
+
+  remove() {
+    let currentNode = this.head
+    let nodeToDelete = this.getTailNode()
+
+    while(currentNode.next) {
+      if(currentNode.next === nodeToDelete){
+        currentNode.next = null
+        this._length--
+        break
+      }
+    } 
+    currentNode = currentNode.next   
+  }
+
+  removeFirst() {
+    let currentNode = this.head
+
+    this.head = currentNode.next
+    this._length--
+  }
+
+  isEmpty() {
+    return this._length === 0
+  }
+
+  size() {
+    return this._length
+  }
+
+  clear() {
+    this._length = 0
+    this.head = null
+  }
+
 }
 
 // const sll = new singlyLinkedList()
 // sll.add(10)
 // sll.add(11)
+// sll.add(12)
+// sll.add(13)
+// console.log(sll.isEmpty())
+
 
 export default singlyLinkedList
