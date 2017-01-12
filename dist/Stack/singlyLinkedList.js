@@ -62,39 +62,60 @@ var singlyLinkedList = function () {
       return currentNode;
     }
   }, {
-    key: "removePosition",
-    value: function removePosition(position) {
+    key: "getHeadNode",
+    value: function getHeadNode() {
+      return this.head;
+    }
+  }, {
+    key: "getTailNode",
+    value: function getTailNode() {
       var currentNode = this.head;
-      var length = this._length;
-      var count = 0;
-      var beforeNodeToDelete = null;
-      var nodeToDelete = null;
-      var deletedNode = null;
+      console.log(currentNode);
 
-      if (position < 0 || position > length) {
-        throw new Error("This node position does not exist in this list");
+      while (currentNode.next) {
+        currentNode = currentNode.next;
       }
 
-      if (position === 1) {
-        this.head = currentNode.next;
-        deletedNode = currentNode;
-        currentNode = null;
-        this._length--;
+      return currentNode;
+    }
+  }, {
+    key: "remove",
+    value: function remove() {
+      var currentNode = this.head;
+      var nodeToDelete = this.getTailNode();
 
-        return deletedNode;
+      while (currentNode.next) {
+        if (currentNode.next === nodeToDelete) {
+          currentNode.next = null;
+          this._length--;
+          break;
+        }
       }
+      currentNode = currentNode.next;
+    }
+  }, {
+    key: "removeFirst",
+    value: function removeFirst() {
+      var currentNode = this.head;
 
-      while (count < position) {
-        beforeNodeToDelete = currentNode;
-        nodeToDelete = currentNode.next;
-        count++;
-      }
-
-      beforeNodeToDelete.next = nodeToDelete.next;
-      deletedNode = nodeToDelete;
-      nodeToDelete = null;
+      this.head = currentNode.next;
       this._length--;
-      return deletedNode;
+    }
+  }, {
+    key: "isEmpty",
+    value: function isEmpty() {
+      return this._length === 0;
+    }
+  }, {
+    key: "size",
+    value: function size() {
+      return this._length;
+    }
+  }, {
+    key: "clear",
+    value: function clear() {
+      this._length = 0;
+      this.head = null;
     }
   }]);
 
@@ -104,5 +125,9 @@ var singlyLinkedList = function () {
 // const sll = new singlyLinkedList()
 // sll.add(10)
 // sll.add(11)
+// sll.add(12)
+// sll.add(13)
+// console.log(sll.isEmpty())
+
 
 exports.default = singlyLinkedList;
