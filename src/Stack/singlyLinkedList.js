@@ -48,16 +48,22 @@ const singlyLinkedList = class {
   }
 
 
-  // removePosition() {
+  removePosition(position) {
+    let currentNode = this.head
+    let length = this._length
+    let count = 0
+    let beforeNodeToDelete = null
+    let nodeToDelete = null
+    let deletedNode = null
+  }
 
-  // }
 }
 
 
-const sll = new singlyLinkedList()
-sll.add(10)
-sll.add(11)
-sll.add(12)
-console.log(sll.searchNodeAt(1))
+// const sll = new singlyLinkedList()
+// sll.add(10)
+// sll.add(11)
+// sll.add(12)
+// console.log(sll.searchNodeAt(2))
 
-// export default singlyLinkedList
+export default singlyLinkedList

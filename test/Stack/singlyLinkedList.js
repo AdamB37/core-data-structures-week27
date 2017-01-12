@@ -14,18 +14,23 @@ describe('singlyLinkedList', () => {
       const sll = new singlyLinkedList()
       sll.add(10)
 
-    expect(sll.add(10)).to.eql({
-      data: 10, next: null })
+    expect(sll.add(10)).to.eql({data: 10, next: null })
     })
   })
 
   context('searchNodeAt()', () => {
     it('searches for a node at a specific position in the list', () => {
       const sll = new singlyLinkedList()
+      sll.add(10)
       sll.searchNodeAt(1)
+
+      expect(sll.searchNodeAt(1)).to.eql({data: 10, next: null })
     })
   })
 
+  // context('removePosition()', () => {
+  //   it('')
+  // })  
 })
 
  

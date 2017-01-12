@@ -1,5 +1,9 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,20 +61,25 @@ var singlyLinkedList = function () {
       }
       return currentNode;
     }
-
-    // removePosition() {
-
-    // }
-
+  }, {
+    key: "removePosition",
+    value: function removePosition(position) {
+      var currentNode = this.head;
+      var length = this._length;
+      var count = 0;
+      var beforeNodeToDelete = null;
+      var nodeToDelete = null;
+      var deletedNode = null;
+    }
   }]);
 
   return singlyLinkedList;
 }();
 
-var sll = new singlyLinkedList();
-sll.add(10);
-sll.add(11);
-sll.add(12);
-console.log(sll.searchNodeAt(1));
+// const sll = new singlyLinkedList()
+// sll.add(10)
+// sll.add(11)
+// sll.add(12)
+// console.log(sll.searchNodeAt(2))
 
-// export default singlyLinkedList
+exports.default = singlyLinkedList;
