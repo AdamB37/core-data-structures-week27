@@ -16,15 +16,15 @@ var Node = function Node(data) {
   this.prev = null;
 };
 
-var doublyLinkedList = function () {
-  function doublyLinkedList() {
-    _classCallCheck(this, doublyLinkedList);
+var DoublyLinkedList = function () {
+  function DoublyLinkedList() {
+    _classCallCheck(this, DoublyLinkedList);
 
     this._length = 0;
     this.head = null;
   }
 
-  _createClass(doublyLinkedList, [{
+  _createClass(DoublyLinkedList, [{
     key: "add",
     value: function add(value) {
       if (!value) {
@@ -120,7 +120,7 @@ var doublyLinkedList = function () {
     }
   }]);
 
-  return doublyLinkedList;
+  return DoublyLinkedList;
 }();
 
 // const sll = new doublyLinkedList()
@@ -131,4 +131,4 @@ var doublyLinkedList = function () {
 // console.log(sll.isEmpty())
 
 
-exports.default = doublyLinkedList;
+exports.default = DoublyLinkedList;

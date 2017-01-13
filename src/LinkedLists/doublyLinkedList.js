@@ -1,4 +1,4 @@
-  class Node {
+class Node {
   constructor(data) {
   this.data = data
   this.next = null
@@ -6,7 +6,7 @@
   }
 }
 
-const doubleLinkedList = class {
+const DoublyLinkedList = class {
   constructor() {
     this._length = 0
     this.head = null
@@ -99,7 +99,7 @@ const doubleLinkedList = class {
 
 }
 
-// const sll = new singlyLinkedList()
+// const sll = new doublyLinkedList()
 // sll.add(10)
 // sll.add(11)
 // sll.add(12)
@@ -107,4 +107,4 @@ const doubleLinkedList = class {
 // console.log(sll.isEmpty())
 
 
-export default doubleLinkedList
+export default DoublyLinkedList
