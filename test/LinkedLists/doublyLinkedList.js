@@ -1,101 +1,142 @@
 import chai, { expect } from 'chai'
 import chaiChange from 'chai-change'
-import DoublyLinkedList from '../../src/LinkedLists/doublyLinkedList'
+import DoublyLinkedList from '../../src/LinkedLists/DoublyLinkedList'
 
 chai.use(chaiChange)
 
 describe('DoublyLinkedList', () => {
-  it('exists', () => {
+  it('exists', function () {
     expect(DoublyLinkedList).to.be.a('function')
-  })
-
+  }) 
+  
   context('insert()', () => {
-    it('Inserts a node (with the provided data) to the tail of the list', () => {
-      const list = new DoublyLinkedList()
+    it('inserts a new node and its value to the tail of the list', () => {
+      const dll = new DoublyLinkedList()
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('another-element')
-
-      expect( list.find('another-element') ).to.eql( list.getTailNode() )
-    })
+    expect(dll.find(12).to.eql(dll.getTailNode()))
+   })
   })
+
   context('insertFirst()', () => {
-    it('Inserts a node (with the provided data) to the head of the list', () => {
-      const list = new DoublyLinkedList()
+    it('inserts a node and its value to the head of the list', () => {
+      const dll = new DoublyLinkedList()
+      dll.insert(10)
+      dll.insert(11)
+      dll.insert(12)
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('another-element')
-      list.insert('elementals')
-      list.insert('other-elementals')
-      list.insertFirst( 'ele' )
-
-      expect( list.getHeadNode().data ).to.eql( 'ele' )
+      expect(dll.getHeadNode().data).to.eql(10)
     })
   })
-  context('insertBefore()', () => {
-    it('Inserts a node (with data "apples") before the first node containing "bananas"', () => {
-      const list = new DoublyLinkedList()
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('other-elementals')
-      list.insert('elementals')
-      list.insert('bananas')
-
-      // expect( list.size() ).to.eql( 5 )
-      expect( list.insertBefore('bananas', 'apples' ) ).to.eql(
-        { data:'apples', next: { data:'bananas', next: null } }
-      )
-      // expect( list.size() ).to.eql( 6 )
-    })
-  })
   context('insertAfter()', () => {
-    it('Inserts a node (with data "bananas") after the first node containing "apples"', () => {
-      const list = new DoublyLinkedList()
+    it('inserts a node and its value after the first node', () => {
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('other-elementals')
-      list.insert('apples')
-      list.insert('elementals')
-
-      // expect( list.size() ).to.eql( 5 )
-      expect( list.insertAfter('apples', 'bananas' ) ).to.eql(
-        { data:'bananas', next: { data:'elementals', next: null } }
-      )
-      // expect( list.size() ).to.eql( 6 )
     })
   })
+
+  context('find()', () => {
+    it('searches for a node at a specific position in the list', () => {
+      const dll = new DoublyLinkedList()
+      dll.add(10)
+
+      expect(dll.find(1)).to.eql({data: 10, next: null })
+    })
+  })
+
+
+  context('getHeadNode()', () => {
+    it('returns the head node in the list', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+
+      expect(dll.getHeadNode()).to.eql({data: 10, next: {data: 11, next: {data: 12, next: {data: 13, next: null}}}})
+    })
+  })
+
+  context('getTailNode()', () => {
+    it('returns the last node in the list', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+
+      expect(dll.getTailNode()).to.eql({data: 13, next: null})
+    })
+  })
+
   context('remove()', () => {
-    it('Removes the tail node from the list', () => {
-      const list = new DoublyLinkedList()
+    it('deletes the last node in the list', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+      dll.add(14)
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('other-elementals')
-      list.insert('apples')
-      list.insert('elementals')
-
-      expect(() => list.remove() ).to.alter(() => list.size(), { from: 5, to: 4 } )
-      expect( list.find( 'elementals' ) ).to.eql( -1 )
-
+      expect( () => dll.removeFirst() ).to.alter(() => dll.size(), { from: 5, to: 4 } )
     })
   })
+  
   context('removeFirst()', () => {
-    it('Removes the head node from the list', () => {
-      const list = new DoublyLinkedList()
+    it('deletes the head node in the list', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+      dll.add(14)
 
-      list.insert('element')
-      list.insert('other-element')
-      list.insert('other-elementals')
-      list.insert('apples')
-      list.insert('elementals')
-
-      expect(() =>  list.removeFirst() ).to.alter(() =>  list.size(), { from: 5, to: 4 } )
-      expect( list.find( 'element' ) ).to.eql( -1 )
-
+      expect( () => dll.removeFirst() ).to.alter(() => dll.size(), { from: 5, to: 4 } )
     })
   })
+
+  context('isEmpty()', () => {
+    it('returns true if the list is empty', () => {
+      const dll = new DoublyLinkedList
+
+      expect(dll.isEmpty()).to.eql(true)
+    })
+  })
+
+  context('isEmpty()', () => {
+    it('returns false if the list is empty', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+      dll.add(14)
+
+      expect(dll.isEmpty()).to.eql(false)
+    })
+  })
+
+  context('clear()', () => {
+    it('deletes all the values and nodes in the list', () => {
+      const dll = new DoublyLinkedList
+      dll.add(10)
+      dll.add(11)
+      dll.add(12)
+      dll.add(13)
+      dll.add(14)
+
+      expect( () => dll.clear() ).to.alter(() => dll.size(), { from: 5, to: 0 } )
+    })
+  })
+
 })
+
+
+
+
+
+
+
+ 

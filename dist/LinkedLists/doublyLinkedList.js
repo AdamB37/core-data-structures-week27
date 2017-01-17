@@ -22,47 +22,10 @@ var DoublyLinkedList = function () {
 
     this._length = 0;
     this.head = null;
+    this.tail = null;
   }
 
   _createClass(DoublyLinkedList, [{
-    key: "add",
-    value: function add(value) {
-      if (!value) {
-        throw new Error("Please pass in a value!");
-      }
-      var node = new Node(value);
-      if (!this.head) {
-        this.head = node;
-        this._length += 1;
-
-        return node;
-      }
-      var currentNode = this.head;
-      while (currentNode.next) {
-        currentNode = currentNode.next;
-      }
-      currentNode.next = node;
-      this._length += 1;
-      return node;
-    }
-  }, {
-    key: "searchNodeAt",
-    value: function searchNodeAt(position) {
-      var currentNode = this.head;
-      var length = this._length;
-      var count = 1;
-
-      if (length === 0 || position < 1 || position > length) {
-        throw new Error("This node position does not exist in this list.");
-      }
-
-      while (count < position) {
-        currentNode = currentNode.next;
-        count++;
-      }
-      return currentNode;
-    }
-  }, {
     key: "getHeadNode",
     value: function getHeadNode() {
       return this.head;
@@ -71,14 +34,45 @@ var DoublyLinkedList = function () {
     key: "getTailNode",
     value: function getTailNode() {
       var currentNode = this.head;
-      console.log(currentNode);
 
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
-
       return currentNode;
     }
+  }, {
+    key: "insert",
+    value: function insert(value) {
+      var insertedNode = new Node(value);
+      if (this._length) {
+        insertedNode = this.tail.next;
+        insertedNode.prev = this.tail;
+        this.tail = insertedNode;
+      } else {
+        this.head = insertedNode;
+        this.tail = insertedNode;
+      }
+      this._length++;
+      return insertedNode;
+    }
+
+    // insertFirst(value) {
+    //   let insertedNode = 
+    //   this.head = 
+    // }
+
+    // insertBefore(value) {
+
+    // }
+
+    // insertAfter(value) {
+
+    // }
+
+    // find() {
+
+    // }
+
   }, {
     key: "remove",
     value: function remove() {

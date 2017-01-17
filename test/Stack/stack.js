@@ -3,62 +3,107 @@ import chaiChange from 'chai-change'
 import Stack from '../../src/Stack/stack'
 
 chai.use(chaiChange)
+  let stack
 
 describe.only('Stack', function () {
+  beforeEach(function(){
+    stack = new Stack()
+  }) 
+
   it('exists', function () {
     expect(Stack).to.be.a('function')
   })
 
-  context('push()', function () {
+  describe('push()', function () {
     it('exists', function () {
-      expect(this.pringles.push).to.be.a( 'function' )
+      expect(stack.push).to.be.a( 'function' )
     })
 
-    it('increases the stack size by one', function () {
-      expect(this.pringles.push( 'foo' )).to.satisfy( () => {
-        return this.pringles.length() === 1
-      })
-    })
+    it('increases the stack size', function () {
+      stack.push(10)
+      stack.push(11)
+      stack.push(12)
 
-    it('returns undefined', function () {
-      expect(this.pringles.push()).to.be.undefined
+      expect(stack.length()).to.equal(3)
     })
   })
 
-  context('pop()', function () {
+  // describe('contents()', function () {
+  //   it('returns the value of the stack in an array', function () {
+  //     stack.push(10)
+  //     stack.push(11)
+  //     stack.push(12)
+
+  //     expect(stack.contents()).to.equal([10, 11, 12])
+  //   })
+  // })
+
+
+  describe('pop()', function () {
     it('exists', function () {
-      expect(this.pringles.pop).to.be.a( 'function' )
+      expect(stack.pop).to.be.a( 'function' )
     })
 
     context('when the stack is empty', function () {
       it('does not change the stack size', function () {
-        expect(this.pringles.length()).to.equal( 0 )
+        expect(stack.length()).to.equal( 0 )
       })
 
       it('returns null', function () {
-        expect(this.pringles.pop()).to.be.null
+        expect(stack.pop()).to.be.null
       })
     })
 
-    context('when the stack is not empty', function () {
+    describe('when the stack is not empty', function () {
       beforeEach(function () {
-        this.pringles.push( 'foo' )
-        this.pringles.push( 'bar' )
-        this.pringles.push( 'bar' )
+        stack.push( 'foo' )
+        stack.push( 'bar' )
+        stack.push( 'bar' )
       })
 
       it('decreases the stack size by one', function () {
-        expect(this.pringles.pop()).to.satisfy( () => {
-          return this.pringles.length() === 2
+        expect(stack.pop()).to.satisfy( () => {
+          return stack.length() === 2
         })
       })
+    })
+  })
 
-      it('returns elements in the revers order of push()es, one at a time', function () {
-        expect(this.pringles.pop()).to.equal( 'bar' )
-        expect(this.pringles.pop()).to.equal( 'bar' )
-        expect(this.pringles.pop()).to.equal( 'foo' )
-        expect(this.pringles.pop()).to.be.null
-      })
+  describe('isEmpty()', function () {
+    it('exists', function () {
+      expect(stack.isEmpty).to.be.a('function')
+    })
+
+    it('returns true when the stack is empty', function () {
+      expect(stack.isEmpty()).to.be.true
+    })
+
+    it('returns false when the stack is not empty', function () {
+      stack.push( 'foo' )
+
+      expect(stack.isEmpty()).to.be.false
+    })
+  })
+
+  describe('length()', function () {
+    it('exists', function () {
+      expect(stack.length).to.be.a('function')
+    })
+
+    it('returns the number of elements in the stack', function () {
+      expect(stack.length()).to.equal( 0 )
+
+      stack.push( 'foo' )
+      expect(stack.length()).to.equal( 1 )
+
+      stack.push( 'bar' )
+      expect(stack.length()).to.equal( 2 )
+
+      stack.pop()
+      expect(stack.length()).to.equal( 1 )
+
+      stack.push( 'baz' )
+      expect(stack.length()).to.equal( 2 )
     })
   })
 
@@ -78,41 +123,13 @@ describe.only('Stack', function () {
   //   })
   // })
 
-  // context('isEmpty()', function () {
-  //   it('exists', function () {
-  //     expect(this.pringles.isEmpty).to.be.a( 'function' )
-  //   })
 
-  //   it('returns true when the stack is empty', function () {
-  //     expect(this.pringles.isEmpty()).to.be.true
-  //   })
-
-  //   it('returns false when the stack is not empty', function () {
-  //     this.pringles.push( 'foo' )
-
-  //     expect(this.pringles.isEmpty()).to.be.false
-  //   })
-  // })
 
   // context('length()', function () {
   //   it('exists', function () {
   //     expect(this.pringles.pop).to.be.a( 'function' )
   //   })
 
-  //   it('returns the number of elements in the stack', function () {
-  //     expect(this.pringles.length()).to.equal( 0 )
 
-  //     this.pringles.push( 'foo' )
-  //     expect(this.pringles.length()).to.equal( 1 )
-
-  //     this.pringles.push( 'bar' )
-  //     expect(this.pringles.length()).to.equal( 2 )
-
-  //     this.pringles.pop()
-  //     expect(this.pringles.length()).to.equal( 1 )
-
-  //     this.pringles.push( 'baz' )
-  //     expect(this.pringles.length()).to.equal( 2 )
-  //   })
   // })
 })

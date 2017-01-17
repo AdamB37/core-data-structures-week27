@@ -10,58 +10,53 @@ const DoublyLinkedList = class {
   constructor() {
     this._length = 0
     this.head = null
-  }
-
-  add(value) {
-    if(!value){
-      throw new Error("Please pass in a value!")
-    }
-    let node = new Node(value)
-    if(!this.head) {
-      this.head = node
-      this._length += 1
-
-      return node
-    }
-    let currentNode = this.head
-    while(currentNode.next) {
-      currentNode = currentNode.next
-    }
-    currentNode.next = node
-    this._length += 1
-    return node
-  }
-
-  searchNodeAt(position) {
-    let currentNode = this.head
-    let length = this._length
-    let count = 1
-
-    if(length === 0 || position < 1 || position > length) {
-      throw new Error("This node position does not exist in this list.")
-    }
-
-    while(count < position) {
-      currentNode = currentNode.next
-      count++
-    }
-    return currentNode
+    this.tail = null
   }
 
   getHeadNode() {
     return this.head
   }
+  
 
   getTailNode() {
     let currentNode = this.head
-    console.log(currentNode)
 
     while(currentNode.next) {
       currentNode = currentNode.next
     }
-
     return currentNode
   }
+
+  insert(value) {
+    let insertedNode = new Node(value)
+    if(this._length) {
+      insertedNode = this.tail.next
+      insertedNode.prev = this.tail
+      this.tail = insertedNode
+    } else {
+      this.head = insertedNode
+      this.tail = insertedNode
+    }
+    this._length++
+    return insertedNode
+  }
+
+  // insertFirst(value) {
+  //   let insertedNode = 
+  //   this.head = 
+  // }
+
+  // insertBefore(value) {
+
+  // }
+
+  // insertAfter(value) {
+
+  // }
+
+  // find() {
+
+  // }
 
   remove() {
     let currentNode = this.head

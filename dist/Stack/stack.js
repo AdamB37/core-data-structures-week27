@@ -20,42 +20,73 @@ var Stack = function () {
   function Stack() {
     _classCallCheck(this, Stack);
 
+    this.head = null;
     this.top = null;
   }
 
   _createClass(Stack, [{
     key: "push",
-    value: function push(data) {
-      var addedNode = new Node(data, null);
-      if (this.top) {
-        this.top.next = addedNode;
+    value: function push(value) {
+      if (this.head == null) {
+        this.head = new Node(value);
+        this.top = this.head;
+        return this;
       }
+      var addedNode = new Node(value);
       addedNode.prev = this.top;
+      this.top.next = addedNode;
       this.top = addedNode;
-    }
-  }, {
-    key: "contents",
-    value: function contents() {
-      var newArr = [];
-
-      while (this.top.next) {
-        this.top = this.top.next;
-        newArr.push(this.top.next.data);
-      }
-      return newArr;
+      return this;
     }
   }, {
     key: "pop",
-    value: function pop(data) {
-      if (!this.top) {
-        throw new Error("There are no values in the stack");
+    value: function pop() {
+      if (this.head == null) {
         return null;
       }
-      var topToPop = this.top;
-      var newTop = topToPop.next;
-
-      return topToPop;
+      var currentTop = this.top;
+      this.top = this.top.prev;
+      this.top.next = null;
+      return currentTop;
     }
+  }, {
+    key: "length",
+    value: function length() {
+      var currentNode = this.head;
+      var count = 0;
+      while (currentNode) {
+        currentNode = currentNode.next;
+        count++;
+      }
+      return count;
+    }
+  }, {
+    key: "isEmpty",
+    value: function isEmpty() {
+      return this.head == null ? true : false;
+    }
+
+    // contents(data) {
+    //   let newArr = []
+    //   let currentNode = this.head
+
+    //   while(currentNode) {
+    //     currentNode = currentNode.next
+    //   //get the data out of each node
+    //     return currentNode.data
+    //   }
+    //   return newArr
+    //   //store data in new array
+
+    //   // while(currentNode.data) {
+
+
+    //   //   currentNode.data = currentNode.next
+    //   //   newArr.push(this.top.next.data)
+    //   // }
+    //   // return newArr
+    // }
+
   }]);
 
   return Stack;
@@ -65,5 +96,6 @@ var Stack = function () {
 // stack.push(10)
 // stack.push(5)
 // console.log(stack.pop())
+
 
 exports.default = Stack;
