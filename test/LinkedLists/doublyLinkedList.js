@@ -4,7 +4,7 @@ import DoublyLinkedList from '../../src/LinkedLists/DoublyLinkedList'
 
 chai.use(chaiChange)
 
-describe('DoublyLinkedList', () => {
+describe('DoublyLinkedList()', () => {
   it('exists', function () {
     expect(DoublyLinkedList).to.be.a('function')
   }) 
@@ -12,34 +12,39 @@ describe('DoublyLinkedList', () => {
   context('insert()', () => {
     it('inserts a new node and its value to the tail of the list', () => {
       const dll = new DoublyLinkedList()
-      
-    expect(dll.insert(10)).to.eql(10)
-   })
-  })
-
-  context('insertFirst()', () => {
-    it('inserts a node and its value to the head of the list', () => {
-      const dll = new DoublyLinkedList()
       dll.insert(10)
       dll.insert(11)
       dll.insert(12)
-
-      expect(dll.getHeadNode().data).to.eql(10)
-    })
+      
+    expect(dll.getTailNode()).to.eql(12)
+   })
   })
 
-  context('insertAfter()', () => {
-    it('inserts a node and its value after the first node', () => {
+  // context('insertFirst()', () => {
+  //   it('inserts a node and its value to the head of the list', () => {
+  //     const dll = new DoublyLinkedList()
+  //     dll.insert(10)
+  //     dll.insert(11)
+  //     dll.insert(12)
 
-    })
-  })
+  //     expect(dll.getHeadNode().data).to.eql(10)
+  //   })
+  // })
+
+  // context('insertAfter()', () => {
+  //   it('inserts a node and its value after the first node', () => {
+
+  //   })
+  // })
 
   context('find()', () => {
     it('searches for a node at a specific position in the list', () => {
       const dll = new DoublyLinkedList()
       dll.insert(10)
+      dll.insert(11)
+      dll.insert(12)
 
-      expect(dll.find(1)).to.eql({data: 10, next: null })
+      expect(dll.find(1)).to.eql(10)
     })
   })
 
@@ -52,7 +57,7 @@ describe('DoublyLinkedList', () => {
       dll.insert(12)
       dll.insert(13)
 
-      expect(dll.getHeadNode()).to.eql({data: 10, next: {data: 11, next: {data: 12, next: {data: 13, next: null}}}})
+      expect(dll.getHeadNode()).to.eql(10)
     })
   })
 
@@ -64,7 +69,7 @@ describe('DoublyLinkedList', () => {
       dll.insert(12)
       dll.insert(13)
 
-      expect(dll.getTailNode()).to.eql({data: 13, next: null})
+      expect(dll.getTailNode()).to.eql(13)
     })
   })
 

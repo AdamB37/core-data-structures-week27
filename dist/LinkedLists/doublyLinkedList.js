@@ -28,40 +28,32 @@ var DoublyLinkedList = function () {
   _createClass(DoublyLinkedList, [{
     key: "getHeadNode",
     value: function getHeadNode() {
-      return this.head;
+      return this.head.data;
     }
   }, {
     key: "getTailNode",
     value: function getTailNode() {
       var currentNode = this.head;
-
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
-
-      return currentNode;
+      return currentNode.data;
     }
   }, {
     key: "insert",
     value: function insert(data) {
       var node = new Node(data);
-      var currentNode = this.head;
 
-      if (!this.head) {
+      if (this._length) {
+        this.tail.next = node;
+        node.prev = this.tail;
+        this.tail = node;
+      } else {
         this.head = node;
-        this._length++;
-        node.prev = null;
-        return node;
+        this.tail = node;
       }
-      while (currentNode.next) {
-        currentNode = currentNode.next;
-      }
-      currentNode.next = node;
-      node.prev = currentNode;
-      // console.log('data',node);
       this._length++;
-
-      return node.data;
+      return node;
     }
 
     // insertFirst(value) {
@@ -81,6 +73,23 @@ var DoublyLinkedList = function () {
 
     // }
 
+  }, {
+    key: "find",
+    value: function find(position) {
+      var currentNode = this.head;
+      var length = this._length;
+      var count = 1;
+
+      if (length === 0 || position < 1 || position > length) {
+        throw new Error("This node position does not exist in this list.");
+      }
+
+      while (count < position) {
+        currentNode = currentNode.next;
+        count++;
+      }
+      return currentNode.data;
+    }
   }, {
     key: "remove",
     value: function remove() {
@@ -129,8 +138,7 @@ var DoublyLinkedList = function () {
 // dll.insert(10)
 // dll.insert(11)
 // dll.insert(12)
-// dll.insert(13)
-// console.log(dll.isEmpty())
+// console.log(dll.getTailNode())
 
 
 exports.default = DoublyLinkedList;
