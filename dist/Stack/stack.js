@@ -65,28 +65,15 @@ var Stack = function () {
     value: function isEmpty() {
       return this.head == null ? true : false;
     }
-
-    // contents(data) {
-    //   let newArr = []
-    //   let currentNode = this.head
-
-    //   while(currentNode) {
-    //     currentNode = currentNode.next
-    //   //get the data out of each node
-    //     return currentNode.data
-    //   }
-    //   return newArr
-    //   //store data in new array
-
-    //   // while(currentNode.data) {
-
-
-    //   //   currentNode.data = currentNode.next
-    //   //   newArr.push(this.top.next.data)
-    //   // }
-    //   // return newArr
-    // }
-
+  }, {
+    key: "peek",
+    value: function peek() {
+      if (this.head == null) {
+        return null;
+      }
+      var currentTop = this.top;
+      return currentTop.data;
+    }
   }]);
 
   return Stack;
@@ -95,7 +82,7 @@ var Stack = function () {
 // const stack = new Stack()
 // stack.push(10)
 // stack.push(5)
-// console.log(stack.pop())
+// console.log(stack.peek())
 
 
 exports.default = Stack;

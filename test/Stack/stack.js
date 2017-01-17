@@ -107,29 +107,19 @@ describe.only('Stack', function () {
     })
   })
 
-  // context('peek()', function () {
-  //   it('exists', function () {
-  //     expect(this.pringles.peek).to.be.a( 'function' )
-  //   })
+  describe('peek()', function () {
+    it('exists', function () {
+      expect(stack.peek).to.be.a('function')
+    })
 
-  //   it('returns null when the stack is empty', function () {
-  //     expect(this.pringles.peek()).to.be.null
-  //   })
+    it('returns null when the stack is empty', function () {
+      expect(stack.peek()).to.be.null
+    })
 
-  //   it('returns the last push()ed element when the stack is not empty', function () {
-  //     this.pringles.push( 'foo' )
+    it('returns the last push()ed element when the stack is not empty', function () {
+      stack.push( 'foo' )
 
-  //     expect(this.pringles.peek()).to.equal( 'foo' )
-  //   })
-  // })
-
-
-
-  // context('length()', function () {
-  //   it('exists', function () {
-  //     expect(this.pringles.pop).to.be.a( 'function' )
-  //   })
-
-
-  // })
+      expect(stack.peek()).to.equal( 'foo' )
+    })
+  })
 })
