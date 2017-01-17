@@ -5,7 +5,7 @@ import Stack from '../../src/Stack/stack'
 chai.use(chaiChange)
   let stack
 
-describe.only('Stack', function () {
+describe('Stack', function () {
   beforeEach(function(){
     stack = new Stack()
   }) 

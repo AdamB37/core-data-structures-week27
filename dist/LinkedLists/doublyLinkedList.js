@@ -8,12 +8,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Node = function Node(data) {
+var Node = function Node(data, prev, next) {
   _classCallCheck(this, Node);
 
   this.data = data;
-  this.next = null;
-  this.prev = null;
+  this.next = next;
+  this.prev = prev;
 };
 
 var DoublyLinkedList = function () {
@@ -38,22 +38,30 @@ var DoublyLinkedList = function () {
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
+
       return currentNode;
     }
   }, {
     key: "insert",
-    value: function insert(value) {
-      var insertedNode = new Node(value);
-      if (this._length) {
-        insertedNode = this.tail.next;
-        insertedNode.prev = this.tail;
-        this.tail = insertedNode;
-      } else {
-        this.head = insertedNode;
-        this.tail = insertedNode;
+    value: function insert(data) {
+      var node = new Node(data);
+      var currentNode = this.head;
+
+      if (!this.head) {
+        this.head = node;
+        this._length++;
+        node.prev = null;
+        return node;
       }
+      while (currentNode.next) {
+        currentNode = currentNode.next;
+      }
+      currentNode.next = node;
+      node.prev = currentNode;
+      // console.log('data',node);
       this._length++;
-      return insertedNode;
+
+      return node.data;
     }
 
     // insertFirst(value) {
@@ -117,12 +125,12 @@ var DoublyLinkedList = function () {
   return DoublyLinkedList;
 }();
 
-// const sll = new doublyLinkedList()
-// sll.add(10)
-// sll.add(11)
-// sll.add(12)
-// sll.add(13)
-// console.log(sll.isEmpty())
+// const dll = new DoublyLinkedList()
+// dll.insert(10)
+// dll.insert(11)
+// dll.insert(12)
+// dll.insert(13)
+// console.log(dll.isEmpty())
 
 
 exports.default = DoublyLinkedList;

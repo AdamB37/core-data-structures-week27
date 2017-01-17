@@ -59,10 +59,4 @@ class Stack {
 
 }
 
-// const stack = new Stack()
-// stack.push(10)
-// stack.push(5)
-// console.log(stack.peek())
-
-
 export default Stack

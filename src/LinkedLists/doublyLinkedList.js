@@ -1,8 +1,8 @@
 class Node {
-  constructor(data) {
+  constructor(data, prev, next) {
   this.data = data
-  this.next = null
-  this.prev = null
+  this.next = next
+  this.prev = prev
   }
 }
 
@@ -13,32 +13,37 @@ const DoublyLinkedList = class {
     this.tail = null
   }
 
-  getHeadNode() {
-    return this.head
-  }
-  
+ getHeadNode() { return this.head }
 
   getTailNode() {
     let currentNode = this.head
 
-    while(currentNode.next) {
+    while( currentNode.next ) {
       currentNode = currentNode.next
     }
+
     return currentNode
   }
 
-  insert(value) {
-    let insertedNode = new Node(value)
-    if(this._length) {
-      insertedNode = this.tail.next
-      insertedNode.prev = this.tail
-      this.tail = insertedNode
-    } else {
-      this.head = insertedNode
-      this.tail = insertedNode
+  insert( data ) {
+    let node = new Node( data )
+    let currentNode = this.head
+
+    if( !this.head ) {
+      this.head = node
+      this._length++
+      node.prev = null
+      return node
     }
+    while( currentNode.next ) {
+      currentNode = currentNode.next
+    }
+    currentNode.next = node
+    node.prev = currentNode
+    // console.log('data',node);
     this._length++
-    return insertedNode
+
+    return node.data
   }
 
   // insertFirst(value) {
@@ -94,12 +99,12 @@ const DoublyLinkedList = class {
 
 }
 
-// const sll = new doublyLinkedList()
-// sll.add(10)
-// sll.add(11)
-// sll.add(12)
-// sll.add(13)
-// console.log(sll.isEmpty())
+// const dll = new DoublyLinkedList()
+// dll.insert(10)
+// dll.insert(11)
+// dll.insert(12)
+// dll.insert(13)
+// console.log(dll.isEmpty())
 
 
 export default DoublyLinkedList
