@@ -8,45 +8,74 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Node = function Node(data) {
+var Node = function Node(data, prev, next) {
   _classCallCheck(this, Node);
 
   this.data = data;
-  this.next = null;
+  this.next = next;
+  this.prev = prev;
 };
 
-var singlyLinkedList = function () {
-  function singlyLinkedList() {
-    _classCallCheck(this, singlyLinkedList);
+var DoublyLinkedList = function () {
+  function DoublyLinkedList() {
+    _classCallCheck(this, DoublyLinkedList);
 
     this._length = 0;
     this.head = null;
+    this.tail = null;
   }
 
-  _createClass(singlyLinkedList, [{
-    key: "add",
-    value: function add(value) {
-      if (!value) {
-        throw new Error("Please pass in a value!");
-      }
-      var node = new Node(value);
-      if (!this.head) {
-        this.head = node;
-        this._length += 1;
-
-        return node;
-      }
+  _createClass(DoublyLinkedList, [{
+    key: "getHeadNode",
+    value: function getHeadNode() {
+      return this.head.data;
+    }
+  }, {
+    key: "getTailNode",
+    value: function getTailNode() {
       var currentNode = this.head;
       while (currentNode.next) {
         currentNode = currentNode.next;
       }
-      currentNode.next = node;
-      this._length += 1;
-      return node;
+      return currentNode.data;
     }
   }, {
-    key: "searchNodeAt",
-    value: function searchNodeAt(position) {
+    key: "insert",
+    value: function insert(data) {
+      var node = new Node(data);
+
+      if (this._length) {
+        this.tail.next = node;
+        node.prev = this.tail;
+        this.tail = node;
+      } else {
+        this.head = node;
+        this.tail = node;
+      }
+      this._length++;
+      return node;
+    }
+
+    // insertFirst(value) {
+    //   let insertedNode = 
+    //   this.head = 
+    // }
+
+    // insertBefore(value) {
+
+    // }
+
+    // insertAfter(value) {
+
+    // }
+
+    // find() {
+
+    // }
+
+  }, {
+    key: "find",
+    value: function find(position) {
       var currentNode = this.head;
       var length = this._length;
       var count = 1;
@@ -59,24 +88,7 @@ var singlyLinkedList = function () {
         currentNode = currentNode.next;
         count++;
       }
-      return currentNode;
-    }
-  }, {
-    key: "getHeadNode",
-    value: function getHeadNode() {
-      return this.head;
-    }
-  }, {
-    key: "getTailNode",
-    value: function getTailNode() {
-      var currentNode = this.head;
-      console.log(currentNode);
-
-      while (currentNode.next) {
-        currentNode = currentNode.next;
-      }
-
-      return currentNode;
+      return currentNode.data;
     }
   }, {
     key: "remove",
@@ -119,15 +131,14 @@ var singlyLinkedList = function () {
     }
   }]);
 
-  return singlyLinkedList;
+  return DoublyLinkedList;
 }();
 
-// const sll = new singlyLinkedList()
-// sll.add(10)
-// sll.add(11)
-// sll.add(12)
-// sll.add(13)
-// console.log(sll.isEmpty())
+// const dll = new DoublyLinkedList()
+// dll.insert(10)
+// dll.insert(11)
+// dll.insert(12)
+// console.log(dll.getTailNode())
 
 
-exports.default = singlyLinkedList;
+exports.default = DoublyLinkedList;

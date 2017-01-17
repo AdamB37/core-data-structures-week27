@@ -13,17 +13,18 @@ var Node = function Node(data) {
 
   this.data = data;
   this.next = null;
+  this.prev = null;
 };
 
-var singlyLinkedList = function () {
-  function singlyLinkedList() {
-    _classCallCheck(this, singlyLinkedList);
+var doublyLinkedList = function () {
+  function doublyLinkedList() {
+    _classCallCheck(this, doublyLinkedList);
 
     this._length = 0;
     this.head = null;
   }
 
-  _createClass(singlyLinkedList, [{
+  _createClass(doublyLinkedList, [{
     key: "add",
     value: function add(value) {
       if (!value) {
@@ -119,10 +120,10 @@ var singlyLinkedList = function () {
     }
   }]);
 
-  return singlyLinkedList;
+  return doublyLinkedList;
 }();
 
-// const sll = new singlyLinkedList()
+// const sll = new doublyLinkedList()
 // sll.add(10)
 // sll.add(11)
 // sll.add(12)
@@ -130,4 +131,4 @@ var singlyLinkedList = function () {
 // console.log(sll.isEmpty())
 
 
-exports.default = singlyLinkedList;
+exports.default = doublyLinkedList;
